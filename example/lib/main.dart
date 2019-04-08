@@ -24,7 +24,24 @@ class _MyAppState extends State<MyApp> {
       appBar: AppBar(
         title: const Text('Admob example'),
       ),
-      body: Ad(),
+      body: ListView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        itemBuilder: (BuildContext context, int id) {
+          if (id.isOdd) return Divider();
+
+          if (id != 0 && id % 8 == 0) {
+            return Container(
+              constraints: BoxConstraints.expand(height: 100),
+              child: Ad(),
+            );
+          }
+
+          return Container(
+            constraints: BoxConstraints.expand(height: 150),
+            color: Colors.green,
+          );
+        },
+      ),
     );
   }
 }
