@@ -1,4 +1,5 @@
 #import "AdmobPlatformViewPlugin.h"
+#import "Firebase.h"
 
 @implementation AdmobPlatformViewPlugin
 - (instancetype)init {
@@ -12,11 +13,9 @@
 }
 
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-/*
-    FLTWebViewFactory* webviewFactory =
-          [[FLTAdViewFactory alloc] initWithMessenger:registrar.messenger];
-      [registrar registerViewFactory:webviewFactory withId:@"plugins.flutter.io/firebase_admob/adview"];
-*/
+  FLTAdViewFactory* adViewFactory = [[FLTAdViewFactory alloc] init];
+  [registrar registerViewFactory:adViewFactory withId:@"plugins.flutter.io/firebase_admob/adview"];
+
   FlutterMethodChannel* channel = [FlutterMethodChannel
       methodChannelWithName:@"plugins.flutter.io/firebase_admob"
             binaryMessenger:[registrar messenger]];
@@ -41,7 +40,8 @@
                                details:nil]);
     return;
   }
-  [FLTMobileAd configureWithAppId:appId];
+
+  [GADMobileAds configureWithApplicationID:appId];
   result(nil);
 }
 @end
