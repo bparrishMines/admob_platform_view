@@ -37,7 +37,9 @@
     _adView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";
     _adView.rootViewController = _adViewController;
     
-    [_adView loadRequest:[GADRequest request]];
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ kGADSimulatorID ];
+    [_adView loadRequest:request];
   }
   return self;
 }

@@ -12,6 +12,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool _loadAds = false;
+
   @override
   void initState() {
     super.initState();
@@ -20,27 +22,28 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final MediaQueryData data = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Admob example'),
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 8),
-        itemBuilder: (BuildContext context, int id) {
-          if (id.isOdd) return Divider();
-
-          if (id != 0 && id % 8 == 0) {
-            return Container(
-              constraints: BoxConstraints.expand(height: 100),
-              child: Ad(),
-            );
-          }
-
-          return Container(
-            constraints: BoxConstraints.expand(height: 150),
-            color: Colors.green,
-          );
-        },
+      body: Container(
+        color: Colors.green,
+        constraints: BoxConstraints.expand(),
+        child: ListView(
+          children: <Widget>[
+            Container(
+              width: data.size.width,
+              height: data.size.height * 1.25,
+              color: Colors.black,
+            ),
+            if (_loadAds) Container(width: 200, height: 300, child: Ad()),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() => _loadAds = !_loadAds),
+        child: Icon(Icons.close),
       ),
     );
   }
