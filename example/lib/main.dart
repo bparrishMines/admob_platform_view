@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
               color: Colors.black,
             ),
             if (_loadAds) Container(width: 200, height: 300, child: Ad()),
+            if (_loadAds) Container(width: 200, height: 300, child: NativeAd()),
           ],
         ),
       ),

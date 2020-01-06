@@ -15,6 +15,7 @@
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
   FLTAdViewFactory* adViewFactory = [[FLTAdViewFactory alloc] init];
   [registrar registerViewFactory:adViewFactory withId:@"plugins.flutter.io/firebase_admob/adview"];
+  [registrar registerViewFactory:adViewFactory withId:@"plugins.flutter.io/firebase_admob/adview/native"];
 
   FlutterMethodChannel* channel = [FlutterMethodChannel
       methodChannelWithName:@"plugins.flutter.io/firebase_admob"

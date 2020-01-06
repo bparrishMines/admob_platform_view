@@ -55,3 +55,14 @@ class Ad extends StatelessWidget {
         : UiKitView(viewType: 'plugins.flutter.io/firebase_admob/adview');
   }
 }
+
+class NativeAd extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Platform.isAndroid
+        ? AndroidView(
+            viewType: 'plugins.flutter.io/firebase_admob/adview/native')
+        : UiKitView(
+            viewType: 'plugins.flutter.io/firebase_admob/adview/native');
+  }
+}
