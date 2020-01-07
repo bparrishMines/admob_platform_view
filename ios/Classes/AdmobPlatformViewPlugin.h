@@ -1,4 +1,5 @@
 #import <Flutter/Flutter.h>
+#import "GoogleMobileAds/GoogleMobileAds.h"
 
 @interface AdmobPlatformViewPlugin : NSObject<FlutterPlugin>
 @end
@@ -14,7 +15,7 @@
 @interface FLTNativeAdViewFactory : NSObject <FlutterPlatformViewFactory>
 @end
 
-@interface FLTNativeAdView : NSObject<FlutterPlatformView>
+@interface FLTNativeAdView : NSObject<FlutterPlatformView, GADUnifiedNativeAdLoaderDelegate, GADUnifiedNativeAdDelegate>
 - (instancetype)initWithFrame:(CGRect)frame;
 - (UIView *)view;
 @end
