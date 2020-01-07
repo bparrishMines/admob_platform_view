@@ -12,7 +12,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _loadAds = false;
+  bool _showNativeAd = false;
+  bool _showBannerAd = false;
 
   @override
   void initState() {
@@ -33,18 +34,30 @@ class _MyAppState extends State<MyApp> {
         child: ListView(
           children: <Widget>[
             Container(
-              width: data.size.width,
-              height: data.size.height * 1.25,
-              color: Colors.black,
-            ),
-            if (_loadAds) Container(width: 200, height: 300, child: Ad()),
-            if (_loadAds) Container(width: 200, height: 300, child: NativeAd()),
+                width: data.size.width,
+                height: data.size.height * 1.25,
+                color: Colors.black,
+                child: Row(
+                  children: <Widget>[
+                    RaisedButton(
+                      child: Text('Show Banner Ad'),
+                      onPressed: () => setState(
+                        () => _showBannerAd = true,
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text('Show Native Ad'),
+                      onPressed: () => setState(
+                        () => _showNativeAd = true,
+                      ),
+                    )
+                  ],
+                )),
+            if (_showBannerAd) Container(width: 200, height: 300, child: Ad()),
+            if (_showNativeAd)
+              Container(width: 500, height: 1000, child: NativeAd()),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() => _loadAds = !_loadAds),
-        child: Icon(Icons.close),
       ),
     );
   }
