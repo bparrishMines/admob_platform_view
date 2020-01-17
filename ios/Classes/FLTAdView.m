@@ -61,7 +61,7 @@
     _adViewController = [[UIViewController alloc] init];
 
     _adLoader = [[GADAdLoader alloc] initWithAdUnitID:@"ca-app-pub-3940256099942544/3986624511"
-                       rootViewController:_adViewController
+                       rootViewController:UIApplication.sharedApplication.delegate.window.rootViewController
                                   adTypes:@[kGADAdLoaderAdTypeUnifiedNative]
                                   options:nil];
     _adLoader.delegate = self;
